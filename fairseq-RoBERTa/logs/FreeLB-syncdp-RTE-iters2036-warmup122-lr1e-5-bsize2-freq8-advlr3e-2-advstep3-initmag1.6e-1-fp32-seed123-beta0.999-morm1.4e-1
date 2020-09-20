@@ -1,0 +1,348 @@
+Namespace(activation_dropout=0.0, activation_fn='gelu', adam_betas='(0.9, 0.999)', adam_eps=1e-06, adv_begin_iter=-1, adv_lr=0.03, adv_steps=3, arch='roberta_large', attention_dropout=0.1, best_checkpoint_metric='accuracy', bpe=None, bucket_cap_mb=25, clip_norm=0.0, comet=False, cpu=False, criterion='sentence_prediction', curriculum=0, data='RTE-bin/', dataset_impl=None, ddp_backend='c10d', device_id=0, disable_validation=False, distributed_backend='nccl', distributed_init_method=None, distributed_no_spawn=False, distributed_port=-1, distributed_rank=0, distributed_world_size=1, dropout=0.1, encoder_attention_heads=16, encoder_embed_dim=1024, encoder_ffn_embed_dim=4096, encoder_layers=24, end_learning_rate=0.0, find_unused_parameters=True, fix_batches_to_gpus=False, force_anneal=None, fp16=False, fp16_init_scale=128, fp16_scale_tolerance=0.0, fp16_scale_window=None, grad_square=False, init_token=0, keep_interval_updates=-1, keep_last_epochs=0, log_format=None, log_interval=1000, lr=[1e-05], lr_scheduler='polynomial_decay', max_epoch=10, max_norm=0.14, max_positions=512, max_sentences=2, max_sentences_valid=2, max_tokens=4400, max_tokens_valid=4400, max_update=0, maximize_best_checkpoint_metric=True, memory_efficient_fp16=False, min_loss_scale=0.0001, min_lr=-1, no_epoch_checkpoints=False, no_last_checkpoints=False, no_progress_bar=False, no_save=False, no_save_optimizer_state=False, no_shuffle=False, no_sync_dp=False, norm_method='l2', num_classes=2, num_workers=1, optimizer='adam', optimizer_overrides='{}', per_step_adv=False, pooler_activation_fn='tanh', pooler_dropout=0.0, power=1.0, rand_init_mag=0.16, reduction='sum', reg_weight=0, regression_target=False, required_batch_size_multiple=1, reset_dataloader=True, reset_lr_scheduler=False, reset_meters=True, reset_optimizer=True, restore_file='pretrained/roberta.large/model.pt', save_dir='roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1', save_interval=1, save_interval_updates=0, save_predictions=None, seed=123, sentence_avg=False, separator_token=2, skip_invalid_size_inputs_valid_test=False, std_adv=False, task='sentence_prediction', tbmf_wrapper=False, tensorboard_logdir='', threshold_loss_scale=None, tokenizer=None, total_num_update=2036, train_subset='train', truncate_sequence=False, update_freq=[8], use_bmuf=False, user_dir=None, valid_subset='valid', validate_interval=1, warmup_updates=122, weight_decay=0.1, yopo_steps=1)
+| [input] dictionary: 50265 types
+| [label] dictionary: 9 types
+| loaded 277 examples from: RTE-bin/input0/valid
+| loaded 277 examples from: RTE-bin/input1/valid
+| loaded 277 examples from: RTE-bin/label/valid
+| Loaded valid with #samples: 277
+RobertaModel(
+  (decoder): RobertaEncoder(
+    (sentence_encoder): TransformerSentenceEncoder(
+      (embed_tokens): Embedding(50265, 1024, padding_idx=1)
+      (embed_positions): LearnedPositionalEmbedding(514, 1024, padding_idx=1)
+      (layers): ModuleList(
+        (0): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (1): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (2): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (3): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (4): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (5): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (6): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (7): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (8): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (9): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (10): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (11): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (12): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (13): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (14): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (15): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (16): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (17): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (18): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (19): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (20): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (21): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (22): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+        (23): TransformerSentenceEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+            (mhj): MultiheadAttentionJob()
+          )
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (emb_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+    )
+    (lm_head): RobertaLMHead(
+      (dense): Linear(in_features=1024, out_features=1024, bias=True)
+      (layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (classification_heads): ModuleDict(
+    (sentence_classification_head): RobertaClassificationHead(
+      (dense): Linear(in_features=1024, out_features=1024, bias=True)
+      (dropout): Dropout(p=0.0, inplace=False)
+      (out_proj): Linear(in_features=1024, out_features=2, bias=True)
+    )
+  )
+)
+| model roberta_large, criterion SentencePredictionCriterion
+| num. model params: 356462683 (num. trained: 356462683)
+| training on 1 GPUs
+| max tokens per GPU = 4400 and max sentences per GPU = 2
+| no existing checkpoint found pretrained/roberta.large/model.pt
+| loading train data for epoch 0
+| loaded 2490 examples from: RTE-bin/input0/train
+| loaded 2490 examples from: RTE-bin/input1/train
+| loaded 2490 examples from: RTE-bin/label/train
+| Loaded train with #samples: 2490
+| NOTICE: your device may support faster training with --fp16
+| epoch 001 | loss 1.118 | nll_loss 0.016 | ppl 1.01 | wps 567 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 156 | lr 9.82236e-06 | gnorm 5.722 | clip 0.000 | oom 0.000 | wall 313 | train_wall 309 | smooth_reg 0 | accuracy 0.382329
+| epoch 001 | valid on 'valid' subset | loss 1.006 | nll_loss 0.014 | ppl 1.01 | num_updates 156 | pearson nan | spearman nan | mcc 0 | f1 0 | smooth_reg 0 | accuracy 0.52518 | acc&f1 0.26259
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint1.pt (epoch 1 @ 156 updates) (writing took 7.800523042678833 seconds)
+
+
+/home/Xilie/code/lib/python3.6/site-packages/scipy/stats/stats.py:3399: PearsonRConstantInputWarning: An input array is constant; the correlation coefficent is not defined.
+  warnings.warn(PearsonRConstantInputWarning())
+/home/Xilie/code/lib/python3.6/site-packages/numpy/lib/function_base.py:3183: RuntimeWarning: invalid value encountered in true_divide
+  c /= stddev[:, None]
+/home/Xilie/code/lib/python3.6/site-packages/numpy/lib/function_base.py:3184: RuntimeWarning: invalid value encountered in true_divide
+  c /= stddev[None, :]
+/home/Xilie/code/lib/python3.6/site-packages/scipy/stats/_distn_infrastructure.py:901: RuntimeWarning: invalid value encountered in greater
+  return (a < x) & (x < b)
+/home/Xilie/code/lib/python3.6/site-packages/scipy/stats/_distn_infrastructure.py:901: RuntimeWarning: invalid value encountered in less
+  return (a < x) & (x < b)
+/home/Xilie/code/lib/python3.6/site-packages/scipy/stats/_distn_infrastructure.py:1892: RuntimeWarning: invalid value encountered in less_equal
+  cond2 = cond0 & (x <= _a)
+/home/Xilie/code/lib/python3.6/site-packages/sklearn/metrics/classification.py:872: RuntimeWarning: invalid value encountered in double_scalars
+  mcc = cov_ytyp / np.sqrt(cov_ytyt * cov_ypyp)
+/home/Xilie/code/lib/python3.6/site-packages/sklearn/metrics/classification.py:1437: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 due to no predicted samples.
+  'precision', 'predicted', average, warn_for)
+| epoch 002 | loss 1.017 | nll_loss 0.014 | ppl 1.01 | wps 575 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 312 | lr 9.00731e-06 | gnorm 3.887 | clip 0.000 | oom 0.000 | wall 633 | train_wall 614 | smooth_reg 0 | accuracy 0.484739
+| epoch 002 | valid on 'valid' subset | loss 1.091 | nll_loss 0.016 | ppl 1.01 | num_updates 312 | pearson nan | spearman nan | mcc 0 | f1 0.642157 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.47482 | acc&f1 0.558489
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint2.pt (epoch 2 @ 312 updates) (writing took 10.550024271011353 seconds)
+
+
+| epoch 003 | loss 1.020 | nll_loss 0.014 | ppl 1.01 | wps 555 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 468 | lr 8.19227e-06 | gnorm 3.787 | clip 0.000 | oom 0.000 | wall 966 | train_wall 929 | smooth_reg 0 | accuracy 0.494779
+| epoch 003 | valid on 'valid' subset | loss 1.007 | nll_loss 0.014 | ppl 1.01 | num_updates 468 | pearson nan | spearman nan | mcc 0 | f1 0.642157 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.47482 | acc&f1 0.558489
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint3.pt (epoch 3 @ 468 updates) (writing took 6.6121087074279785 seconds)
+
+
+| epoch 004 | loss 1.013 | nll_loss 0.014 | ppl 1.01 | wps 573 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 624 | lr 7.37722e-06 | gnorm 3.931 | clip 0.000 | oom 0.000 | wall 1286 | train_wall 1235 | smooth_reg 0 | accuracy 0.498394
+| epoch 004 | valid on 'valid' subset | loss 1.021 | nll_loss 0.015 | ppl 1.01 | num_updates 624 | pearson nan | spearman nan | mcc 0 | f1 0.642157 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.47482 | acc&f1 0.558489
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint4.pt (epoch 4 @ 624 updates) (writing took 10.34023118019104 seconds)
+
+
+| epoch 005 | loss 1.006 | nll_loss 0.014 | ppl 1.01 | wps 588 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 780 | lr 6.56217e-06 | gnorm 3.109 | clip 0.000 | oom 0.000 | wall 1601 | train_wall 1533 | smooth_reg 0 | accuracy 0.497189
+| epoch 005 | valid on 'valid' subset | loss 0.998 | nll_loss 0.014 | ppl 1.01 | num_updates 780 | pearson nan | spearman nan | mcc 0 | f1 0 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.52518 | acc&f1 0.26259
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint5.pt (epoch 5 @ 780 updates) (writing took 11.92678189277649 seconds)
+
+
+| epoch 006 | loss 1.009 | nll_loss 0.014 | ppl 1.01 | wps 570 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 936 | lr 5.74713e-06 | gnorm 3.382 | clip 0.000 | oom 0.000 | wall 1927 | train_wall 1840 | smooth_reg 0 | accuracy 0.495181
+| epoch 006 | valid on 'valid' subset | loss 1.013 | nll_loss 0.015 | ppl 1.01 | num_updates 936 | pearson nan | spearman nan | mcc 0 | f1 0.642157 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.47482 | acc&f1 0.558489
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint6.pt (epoch 6 @ 936 updates) (writing took 7.625018835067749 seconds)
+
+
+| epoch 007 | loss 1.006 | nll_loss 0.014 | ppl 1.01 | wps 573 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 1092 | lr 4.93208e-06 | gnorm 3.517 | clip 0.000 | oom 0.000 | wall 2248 | train_wall 2145 | smooth_reg 0 | accuracy 0.499598
+| epoch 007 | valid on 'valid' subset | loss 0.998 | nll_loss 0.014 | ppl 1.01 | num_updates 1092 | pearson nan | spearman nan | mcc 0 | f1 0 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.52518 | acc&f1 0.26259
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint7.pt (epoch 7 @ 1092 updates) (writing took 11.585418701171875 seconds)
+
+
+| epoch 008 | loss 1.003 | nll_loss 0.014 | ppl 1.01 | wps 555 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 1248 | lr 4.11703e-06 | gnorm 3.251 | clip 0.000 | oom 0.000 | wall 2583 | train_wall 2461 | smooth_reg 0 | accuracy 0.497992
+| epoch 008 | valid on 'valid' subset | loss 0.998 | nll_loss 0.014 | ppl 1.01 | num_updates 1248 | pearson nan | spearman nan | mcc 0 | f1 0 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.52518 | acc&f1 0.26259
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint8.pt (epoch 8 @ 1248 updates) (writing took 11.692394495010376 seconds)
+
+
+| epoch 009 | loss 1.005 | nll_loss 0.014 | ppl 1.01 | wps 569 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 1404 | lr 3.30199e-06 | gnorm 3.494 | clip 0.000 | oom 0.000 | wall 2909 | train_wall 2769 | smooth_reg 0 | accuracy 0.496787
+| epoch 009 | valid on 'valid' subset | loss 0.998 | nll_loss 0.014 | ppl 1.01 | num_updates 1404 | pearson nan | spearman nan | mcc 0 | f1 0 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.52518 | acc&f1 0.26259
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint9.pt (epoch 9 @ 1404 updates) (writing took 10.850435972213745 seconds)
+
+
+| epoch 010 | loss 1.003 | nll_loss 0.014 | ppl 1.01 | wps 571 | ups 0 | wpb 1136.673 | bsz 15.962 | num_updates 1560 | lr 2.48694e-06 | gnorm 3.086 | clip 0.000 | oom 0.000 | wall 3234 | train_wall 3077 | smooth_reg 0 | accuracy 0.50241
+| epoch 010 | valid on 'valid' subset | loss 1.008 | nll_loss 0.015 | ppl 1.01 | num_updates 1560 | pearson nan | spearman nan | mcc 0 | f1 0.642157 | best_accuracy 0.52518 | smooth_reg 0 | accuracy 0.47482 | acc&f1 0.558489
+| saved checkpoint roberta-chks/FreeLB-syncdp-RTE-iters2036-warmup122-lr1e-5-bsize2-freq8-advlr3e-2-advstep3-initmag1.6e-1-fp32-seed123-beta0.999-morm1.4e-1/checkpoint10.pt (epoch 10 @ 1560 updates) (writing took 6.43204140663147 seconds)
+
+
+Best metric: 0.5251798561151079
+| done training in 3244.3 seconds
